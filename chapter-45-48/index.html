@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Assignments</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+    button { margin: 3px; }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Assignments (Functions + Events)</h1>
+
+  <!-- Event 1 -->
+  <h2>1. Alert on Link Click</h2>
+  <a href="#" onclick="alert('Hello! You clicked the link.')">Click Me</a>
+
+  <!-- Event 2 -->
+  <h2>2. Mobile Images</h2>
+  <img src="assets/imgs/img1.avif" onclick="alert('You clicked Mobile 1')" alt="Mobile1">
+  <img src="assets/imgs/img2.jpg" onclick="alert('You clicked Mobile 2')" alt="Mobile2">
+
+  <!-- Event 3 -->
+  <h2>3. Student Records Table</h2>
+  <table id="students">
+    <tr><th>Name</th><th>Action</th></tr>
+    <tr><td>Ali</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Sara</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Mark</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Ahsan</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Fatima</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>John</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Zain</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Mona</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Omar</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Noor</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+  </table>
+
+  <!-- Event 4 -->
+  <h2>4. Image Mouseover</h2>
+  <img id="hoverImg" src="assets/imgs/img1.avif" 
+       onmouseover="changeImage()" 
+       onmouseout="resetImage()" 
+       alt="Hover Image">
+
+  <!-- Event 5 -->
+  <h2>5. Counter</h2>
+  <p>Counter Value: <span id="counter">0</span></p>
+  <button onclick="increase()">Increase</button>
+  <button onclick="decrease()">Decrease</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
