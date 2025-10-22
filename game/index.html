@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Batman vs Blade - Simple Fighting Game</title>
+<style>
+  body { margin:0; background:#111; overflow:hidden; }
+  canvas { background:#333; display:block; margin:auto; border:3px solid #fff; }
+</style>
+</head>
+<body>
+<canvas id="game" width="800" height="400"></canvas>
+
+<script>
+// --- Setup ---
+var canvas = document.getElementById("game");
+var ctx = canvas.getContext("2d");
+var ground = 340;
+
+// Load character images
+var img1 = new Image();
+img1.src = "assets/batman-art-by-alex-ross.jpg";
+
+var img2 = new Image();
+img2.src = "assets/blade-et.jpg";
+
+// Player 1 and Player 2
+var p1 = {x:100, y:ground, w:80, h:100, color:"red", vx:0, vy:0, onGround:true, punch:false};
+var p2 = {x:600, y:ground, w:80, h:100, color:"blue", vx:0, vy:0, onGround:true, punch:false};
+
+var keys = {};
+document.addEventListener("keydown", e => keys[e.key] = true);
+document.addEventListener("keyup", e => keys[e.key] = false);
+
+// --- Game Loop ---
+var lastTime = 0;
+function loop(time){
+  var dt = (time - lastTime)/1000;
+  lastTime = time;
+  update(dt);
+  draw();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// --- Update Function ---
+function update(dt){
+  // Gravity
+  [p1, p2].forEach(p=>{
+    p.vy += 800 * dt;
+    p.y += p.vy * dt;
+    if(p.y > ground){ p.y = ground; p.vy=0; p.onGround=true; }
+  });
+
+  // Player 1 Controls (Batman)
+  p1.vx = 0;
+  if(keys["a"]) p1.vx = -200;
+  if(keys["d"]) p1.vx = 200;
+  if(keys["w"] && p1.onGround){ p1.vy = -400; p1.onGround=false; }
+  p1.punch = !!keys["f"];
+  p1.x += p1.vx * dt;
+
+  // Player 2 Controls (Blade)
+  p2.vx = 0;
+  if(keys["ArrowLeft"]) p2.vx = -200;
+  if(keys["ArrowRight"]) p2.vx = 200;
+  if(keys["ArrowUp"] && p2.onGround){ p2.vy = -400; p2.onGround=false; }
+  p2.punch = !!keys["l"];
+  p2.x += p2.vx * dt;
+
+  // Simple Hit Check
+  if(p1.punch && Math.abs(p1.x - p2.x) < 80) p2.color = "yellow";
+  else p2.color = "blue";
+
+  if(p2.punch && Math.abs(p2.x - p1.x) < 80) p1.color = "orange";
+  else p1.color = "red";
+}
+
+// --- Draw Function ---
+function draw(){
+  ctx.fillStyle = "#333";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // Ground
+  ctx.fillStyle = "#222";
+  ctx.fillRect(0, ground + 60, canvas.width, 60);
+
+  drawFighter(p1, img1);
+  drawFighter(p2, img2);
+}
+
+// --- Draw Fighters ---
+function drawFighter(p, img){
+  if (img.complete && img.naturalWidth > 0) {
+    ctx.drawImage(img, p.x, p.y - p.h, p.w, p.h);
+  } else {
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y - p.h, p.w, p.h);
+  }
+
+  // Punch effect
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(p.x + p.w/2, p.y - p.h/2);
+  var reach = p.punch ? 30 : 10;
+  ctx.lineTo(p.x + p.w/2 + (p===p1?reach:-reach), p.y - p.h/2);
+  ctx.stroke();
+}
+</script>
+</body>
+</html>

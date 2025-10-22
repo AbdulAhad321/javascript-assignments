@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:20px; }
+  section { background:#fff; padding:20px; margin-bottom:25px; border-radius:8px; box-shadow:0 0 5px rgba(0,0,0,0.1); }
+  h2 { color:#333; margin-top:0; }
+  input, button { margin:5px 0; padding:6px; }
+  table, th, td { border:1px solid #333; border-collapse:collapse; padding:8px; }
+  button { background:#007bff; color:white; border:none; border-radius:4px; cursor:pointer; }
+  button:hover { background:#0056b3; }
+  #moreText { display:none; }
+  #editForm { display:none; background:#fafafa; padding:10px; border:1px solid #ccc; border-radius:8px; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<!-- ================= QUESTION 1 ================= -->
+<section>
+  <h2>Q1. Signup Form</h2>
+  <form id="signupForm">
+  <input type="text" id="name" placeholder="Enter your name" required><br>
+  <input type="email" id="email" placeholder="Enter your email" required><br>
+  <input type="password" id="password" placeholder="Enter password" required><br>
+  <button type="submit">Submit</button>
+</form>
+<div id="signupResult" style="margin-top:15px; background:#f9f9f9; padding:10px; border-radius:6px;"></div>
+</section>
+
+<!-- ================= QUESTION 2 ================= -->
+<section>
+  <h2>Q2. Read More Button</h2>
+  <p>
+    Batman is a fictional superhero who protects Gotham City.
+    <span id="dots">...</span>
+    <span id="moreText">
+      He is also known as Bruce Wayne, a billionaire by day and a vigilante by night.
+      He uses his intellect, detective skills, and martial arts training to fight crime and injustice.
+    </span>
+  </p>
+  <button id="readMoreBtn">Read more</button>
+</section>
+
+<!-- ================= QUESTION 3 ================= -->
+<section>
+  <h2>Q3. Student Table (Add, Edit, Delete)</h2>
+
+  <form id="studentForm">
+    <input type="text" id="studentName" placeholder="Name" required>
+    <input type="text" id="studentClass" placeholder="Class" required>
+    <input type="text" id="studentRoll" placeholder="Roll No" required>
+    <button type="submit">Add Student</button>
+  </form>
+
+  <table id="studentTable" style="margin-top:15px; width:100%;">
+    <tr>
+      <th>Name</th>
+      <th>Class</th>
+      <th>Roll No</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+
+  <div id="editForm">
+    <h3>Edit Student</h3>
+    <input type="text" id="editName">
+    <input type="text" id="editClass">
+    <input type="text" id="editRoll">
+    <button onclick="updateStudent()">Update</button>
+  </div>
+</section>
+
+<script>
+// ===== Q1: Signup Form =====
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  var result = `
+    <h3>Signup Data</h3>
+    <p><b>Name:</b> ${name}</p>
+    <p><b>Email:</b> ${email}</p>
+    <p><b>Password:</b> ${password}</p>
+  `;
+  document.getElementById("signupResult").innerHTML = result;
+});
+
+// ===== Q2: Read More Button =====
+document.getElementById("readMoreBtn").addEventListener("click", function(){
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("moreText");
+  var btn = document.getElementById("readMoreBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+    btn.textContent = "Read more";
+  } else {
+    dots.style.display = "none";
+    moreText.style.display = "inline";
+    btn.textContent = "Read less";
+  }
+});
+
+// ===== Q3: Student Table =====
+let students = [];
+let editIndex = null;
+
+document.getElementById("studentForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let name = document.getElementById("studentName").value;
+  let cls = document.getElementById("studentClass").value;
+  let roll = document.getElementById("studentRoll").value;
+
+  students.push({name, cls, roll});
+  displayStudents();
+  e.target.reset();
+});
+
+function displayStudents(){
+  let table = document.getElementById("studentTable");
+  table.innerHTML = `
+    <tr>
+      <th>Name</th><th>Class</th><th>Roll No</th><th>Actions</th>
+    </tr>
+  `;
+  students.forEach((s, i)=>{
+    table.innerHTML += `
+      <tr>
+        <td>${s.name}</td>
+        <td>${s.cls}</td>
+        <td>${s.roll}</td>
+        <td>
+          <button onclick="editStudent(${i})">Edit</button>
+          <button onclick="deleteStudent(${i})">Delete</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function deleteStudent(i){
+  students.splice(i, 1);
+  displayStudents();
+}
+
+function editStudent(i){
+  editIndex = i;
+  document.getElementById("editForm").style.display = "block";
+  document.getElementById("editName").value = students[i].name;
+  document.getElementById("editClass").value = students[i].cls;
+  document.getElementById("editRoll").value = students[i].roll;
+}
+
+function updateStudent(){
+  students[editIndex].name = document.getElementById("editName").value;
+  students[editIndex].cls = document.getElementById("editClass").value;
+  students[editIndex].roll = document.getElementById("editRoll").value;
+  displayStudents();
+  document.getElementById("editForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>
