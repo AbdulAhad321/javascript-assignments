@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Clone</title>
+  <!-- Font Awesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <!-- Your CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="head">
+    <nav class="navbar">
+      <div class="nav_left">
+       <i class="fas fa-bars icon" id="sidebarToggle"></i>
+        <img src="youtube_logo.jpg" alt="YouTube Logo">
+      </div>
+
+      <div class="nav_center">
+        <input class="nav_input" type="text" placeholder="Search">
+        <i class="fas fa-magnifying-glass"></i>
+        <i class="fas fa-microphone icon"></i>
+      </div>
+
+      <div class="nav_right">
+        <div class="icon">
+          <i class="fas fa-plus"></i>
+          <span onclick="funcModal()"><button id="openModal" onclick="removeModal()">Create</button></span>
+           <div id="modal1" class="modalBox" style="display: none;">
+  <div class="modal">
+    <h2>Title</h2>
+    <textarea id="title" placeholder="Enter Title"></textarea>
+
+    <h3>Channel Name</h3>
+    <textarea id="channelName" placeholder="Enter Channel Name"></textarea>
+
+    <h3>Upload File</h3>
+    <input type="file" id="thumbnailVideo">
+
+
+    <h3>Post</h3>
+    <button onclick="post()">Post</button>
+    <button onclick="removeModal()">Close</button>
+  </div>
+</div>
+        </div>
+        <i class="fas fa-bell icon "></i>
+        <i class="fas fa-circle-user icon"></i>
+      </div>
+    </nav>
+    <!-- ✅ Top Navbar (mobile style) -->
+<div class="mobile-navbar">
+  <div class="nav-left">
+    <img src="youtube_logo.jpg" alt="YouTube" class="logo" />
+  </div>
+  
+  <div class="nav-right">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-microphone"></i>
+    <i class="fas fa-user-circle"></i>
+  </div>
+</div>
+
+  </header>
+  <!-- ✅ New filter bar goes RIGHT AFTER navbar -->
+  <section class="filter-bar">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">CarryMinati</button>
+    <button class="filter-btn">Harry</button>
+    <button class="filter-btn">Collage</button>
+    <button class="filter-btn">Pakistani dramas</button>
+    <button class="filter-btn">Mixes</button>
+    <button class="filter-btn">Web Development</button>
+    <button class="filter-btn">Lectures</button>
+    <button class="filter-btn">Recently uploaded</button>
+    <button class="filter-btn">Watched</button>
+    <button class="filter-btn">New </button><button class="filter-btn">New </button>
+    <button class="filter-btn">New </button>
+    <button class="filter-btn">New </button>
+    <button class="filter-btn">New </button><span class="arrow">></span>
+    
+  </section>
+  <main class="video-section" >
+   <div class="video-grid" id="videoBox">
+    <!-- video 1 -->
+  
+  </main>
+
+
+  <!-- Sidebar -->
+ <aside class="sidebar sidebar-collapsed" id="sidebar">
+  <!-- Fixed Top Section -->
+  <div class="sidebar_top">
+    <ul class="sidebar_list">
+      <li class="sidebar_item"><i class="fas fa-house icon"></i><span>Home</span></li>
+      <li class="sidebar_item"><i class="fas fa-bolt icon"></i><span>Shorts</span></li>
+      <li class="sidebar_item"><i class="fas fa-photo-film icon"></i><span>Subscriptions</span></li>
+      <li class="sidebar_item"><i class="fas fa-user icon"></i><span>You</span></li>
+    </ul>
+  </div>
+
+  <!-- Scrollable Section (Hidden in collapsed mode) -->
+  <div class="sidebar_scroll ">
+    <ul class="sidebar_list">
+      <hr>
+      <li class="sidebar_item"><i class="fas fa-compass icon"></i><span>Explore</span></li>
+      <li class="sidebar_item"><i class="fas fa-list icon"></i><span>Playlists</span></li>
+      <li class="sidebar_item"><i class="fas fa-video icon"></i><span>Your Videos</span></li>
+      <li class="sidebar_item"><i class="fas fa-clock icon"></i><span>Watch Later</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-thumbs-up"></i><span>Liked Videos</span></li>
+      <hr>
+      <h2>Explore</h2>
+      <li class="sidebar_item"><i class="fas fa-fire"></i><span>Trending</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-music"></i><span>Music</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-gamepad"></i><span>Games</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-newspaper"></i><span>News</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-trophy"></i><span>Trophy</span></li>
+      <hr>
+      <h2 style="font-size: 1.3rem;">More From YouTube</h2>
+      <li class="sidebar_item"><i class="fa-brands fa-youtube" style="color: #ff3d3d;"></i><span>YouTube Premium</span></li>
+      <li class="sidebar_item"><img src="https://www.gstatic.com/youtube/img/studio/yt_studio_logo.svg" height="20"><span>YouTube Studio</span></li>
+      <li class="sidebar_item"><img src="https://www.gstatic.com/youtube/img/promos/growth/youtubemusic/youtubemusic_logo_svg.svg" height="20"><span>YouTube Music</span></li>
+      <li class="sidebar_item"><img src="https://www.gstatic.com/youtube/img/promos/youtubekids/youtubekids_logo_svg.svg" height="20"><span>YouTube Kids</span></li>
+      <hr>
+      <li class="sidebar_item"><i class="fa-solid fa-gear"></i><span>Settings</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-flag"></i><span>Report History</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-circle-question"></i><span>Help</span></li>
+      <li class="sidebar_item"><i class="fa-solid fa-message"></i><span>Send Feedback</span></li>
+    </ul>
+  </div>
+</aside>
+  <!-- bottom navbar -->
+   <div class="bottom-nav">
+  <a href="#" class="nav-item">
+    <div class="nav-icon-text">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </div>
+  </a>
+  <a href="#" class="nav-item">
+    <div class="nav-icon-text">
+      <i class="fas fa-bolt"></i>
+      <span>Shorts</span>
+    </div>
+  </a>
+  <a href="#" class="nav-item create">
+    <div class="nav-icon-text">
+      <i onclick="funcModal()" class="fas fa-plus-circle"></i>
+    </div>
+  </a>
+  <a href="#" class="nav-item">
+    <div class="nav-icon-text">
+      <i class="fas fa-tv"></i>
+      <span>Subs</span>
+    </div>
+  </a>
+  <a href="#" class="nav-item">
+    <div class="nav-icon-text">
+      <i class="fas fa-user-circle"></i>
+      <span>Profile</span>
+    </div>
+  </a>
+</div>
+  
+
+  <!-- Script -->
+<script src="script.js"></script>
+</body>
+</html>
