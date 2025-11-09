@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="container1">
+        <div class="header">
+          <h3>ID CARD Generator</h3>
+        </div>
+        <div class="name">
+          name
+          <input id="name" type="text" placeholder="Enter Name" />
+        </div>
+        <div class="fatherName">
+          father name
+          <input id="fatherName" type="text" placeholder="Enter father name" />
+        </div>
+        <div class="number">
+          phone number
+          <input id="phoneNo" type="number" placeholder="Enter Number" />
+        </div>
+        <div class="courseName">
+          course name
+          <input id="courseName" type="text" placeholder="Enter course Name" />
+        </div>
+        <div class="imgFile">
+          image
+      <input id="imgInput" type="file" aria-label="Upload Image"/>
+        </div>
+        <div class="signBtn">
+          <button onclick="create()">Create</button>
+        </div>
+      </div>
+      <div id="container-2" class="container2">
+      </div>
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>

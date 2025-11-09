@@ -1,0 +1,116 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background and centering */
+body {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Outer wrapper */
+.mainBox {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ID Card */
+#main {
+  width: 380px;
+  height: 520px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+/* Hover animation */
+#main:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Top Image Section */
+.mainImg {
+  height: 45%;
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 4px solid #4f46e5;
+}
+
+.mainImg img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Bottom Info Section */
+.mainBottom {
+  flex-grow: 1;
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #f9fafb;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Info rows */
+.nameS {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 1rem;
+  border-bottom: 1px dashed #d4d4d4;
+}
+
+/* Left (key) text */
+.nameS .key {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Right (value) text */
+.nameS p:last-child {
+  color: #111827;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  #main {
+    width: 90%;
+    height: auto;
+  }
+
+  .mainImg img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .nameS {
+    font-size: 0.9rem;
+  }
+}

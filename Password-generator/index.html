@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Password Generator</h1>
+    <p class="lead">HTML + CSS + JavaScript se bana simple aur secure password generator. Length, character options, copy, aur strength meter included.</p>
+
+    <div class="mb-12">
+      <div class="output">
+        <div class="pwd" id="password">P@ssw0rd-123!</div>
+           <div class="flex-gap-8">
+           <button id="copyBtn">Copy</button>
+          <button id="regen" class="primary">Generate</button>
+        </div>
+      </div>
+    </div>
+
+          <div class="controls mb-12">
+      <div>
+        <label class="muted">Length: <strong id="lenLabel">16</strong></label>
+       <input type="range" id="lengthRange" min="4" max="64" value="16" title="Password length" />
+      </div>
+      <div>
+        <div class="strength" title="Password strength">
+          <i id="strengthBar"></i>
+        </div>
+      <div class="h-6"></div>
+        <div class="muted" id="strengthText">Strength: Strong</div>
+      </div>
+    </div>
+
+   <div class="mb-12">
+      <div class="options">
+        <label class="opt"><input type="checkbox" id="useLower" checked/> lowercase</label>
+        <label class="opt"><input type="checkbox" id="useUpper" checked/> UPPERCASE</label>
+        <label class="opt"><input type="checkbox" id="useNumber" checked/> numbers</label>
+        <label class="opt"><input type="checkbox" id="useSymbol" checked/> symbols</label>
+        <label class="opt"><input type="checkbox" id="avoidAmbig" /> avoid ambig (O0Il1)
+        </label>
+      </div>
+    </div>
+
+    <footer>
+      <div class="muted">Uses Web Crypto for randomness where available.</div>
+      <div class="muted">Save this file as <code>password-generator.html</code> and open in browser.</div>
+    </footer>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
