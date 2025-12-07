@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Review Card Component</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="review-list" id="reviewList"></main>
+
+
+<!-- New review form (optional) -->
+<section class="new-review-wrapper">
+<div class="new-review">
+<input id="newName" type="text" placeholder="Your name" />
+<textarea id="newText" placeholder="Write a review..."></textarea>
+<select aria-label="Select Reviewer" id="newRating">
+<option value="5">5 — Excellent</option>
+<option value="4">4 — Very Good</option>
+<option value="3">3 — Good</option>
+<option value="2">2 — Fair</option>
+<option value="1">1 — Poor</option>
+</select>
+<button id="addReview" class="btn primary">Add Review</button>
+</div>
+</section>
+
+
+<script src="app.js"></script>
+</body>
+</html>
